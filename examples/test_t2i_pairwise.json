@@ -1,0 +1,18 @@
+[
+  {
+    "query": "Little girl in Hanfu sitting by the lake, feeding red carp with lotus seed pods.",
+    "response": [
+      "assets/images_test/image_2_1.png",
+      "assets/images_test/image_2_2.png"
+    ],
+    "label_rank": [1, 2]
+  },
+  {
+    "query": "Snow-covered ancient bridge in the south of the Yangtze River, with carved stone railings and a few withered lotus stalks.",
+    "response": [
+      "assets/images_test/image_4_1.png",
+      "assets/images_test/image_4_2.png"
+    ],
+    "label_rank": [1, 2]
+  }
+]

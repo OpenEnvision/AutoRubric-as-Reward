@@ -1,0 +1,18 @@
+[
+  {
+    "query": "A quiet ancient Chinese courtyard in autumn, with ginkgo leaves on the bluestone road and red lanterns hanging from the corridor.",
+    "response": [
+      "assets/images_test/image_1_1.png",
+      "assets/images_test/image_1_2.png"
+    ],
+    "label_rank": [2, 1]
+  },
+  {
+    "query": "A traditional Chinese tea house by the river at dusk, paper windows glowing with warm yellow light.",
+    "response": [
+      "assets/images_test/image_3_1.png",
+      "assets/images_test/image_3_2.png"
+    ],
+    "label_rank": [2, 1]
+  }
+]

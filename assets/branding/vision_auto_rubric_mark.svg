@@ -1,0 +1,12 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Vision Auto Rubric Mark</title>
+  <desc id="desc">A stylized image frame and checklist representing visual rubric judging.</desc>
+  <rect width="160" height="160" rx="32" fill="#0B1020"/>
+  <rect x="24" y="30" width="112" height="84" rx="18" fill="#14213D" stroke="#6EA8FE" stroke-width="4"/>
+  <path d="M36 98L59 73L78 91L92 76L124 108H36V98Z" fill="#3DDC97"/>
+  <circle cx="108" cy="54" r="12" fill="#FFD166"/>
+  <rect x="48" y="124" width="64" height="8" rx="4" fill="#6EA8FE"/>
+  <path d="M42 48L50 56L66 40" stroke="#F8F9FA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M42 68L50 76L66 60" stroke="#F8F9FA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M42 88L50 96L66 80" stroke="#F8F9FA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

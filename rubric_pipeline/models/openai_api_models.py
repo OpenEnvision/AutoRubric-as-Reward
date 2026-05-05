@@ -1,0 +1,1 @@
+# 这里直接实现一个简单的openai框架调用模型，eval的时候就不用open-judge框架了，直接在fastvideo基础上多安个vllm就行，然后使用eval_template，要不然openjudge和fastvideo不兼容

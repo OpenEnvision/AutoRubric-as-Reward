@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vision-auto-rubric"
+version = "0.1.0"
+description = "Auto-rubric rewards for FLUX text-to-image and Qwen-Image-Edit training."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+]
+dependencies = [
+    "transformers==4.56.0",
+    "accelerate==1.0.1",
+    "tokenizers==0.22.0",
+    "diffusers==0.35.0",
+    "torchdiffeq==0.2.4",
+    "einops==0.8.0",
+    "numpy==1.26.3",
+    "pandas==2.2.3",
+    "pillow==10.2.0",
+    "opencv-python-headless==4.10.0.84",
+    "matplotlib==3.9.2",
+    "PyYAML==6.0.1",
+    "tqdm==4.66.5",
+    "requests==2.31.0",
+    "huggingface_hub==0.34.4",
+    "pydantic==2.9.2",
+    "protobuf==5.28.3",
+    "sentencepiece==0.2.0",
+    "ftfy==6.3.0",
+    "beautifulsoup4==4.12.3",
+    "wandb==0.18.5",
+    "openai",
+    "tenacity",
+    "vllm",
+    "peft==0.17.0",
+    "liger_kernel==0.4.1",
+    "bitsandbytes==0.44.1",
+    "loguru",
+    "gpustat",
+    "safetensors",
+]
+
+[tool.setuptools.packages.find]
+include = ["fastvideo*", "rubric_pipeline*"]
+exclude = ["assets*", "docs*", "scripts*"]

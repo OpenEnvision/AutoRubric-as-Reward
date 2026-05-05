@@ -1,0 +1,17 @@
+grader_name: "image quality comparator"
+language: "en"         
+task_type: "t2i"
+eval_mode: "pairwise"
+min_score: 1
+max_score: 5
+base_url: "http://localhost:8000/v1"
+task_description: |
+  Compare two FLUX text-to-image outputs for prompt following, visual quality,
+  artifact control, aesthetics, and overall preference.
+
+model_name: "Qwen/Qwen3-VL-8B-Instruct"
+api_key: "EMPTY"     
+
+query_specific_generate_number: 5
+enable_categorization: true
+categories_number: 5

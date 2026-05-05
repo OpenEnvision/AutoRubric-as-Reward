@@ -1,0 +1,20 @@
+[
+  {
+    "query": "Add a red lantern to the scene while preserving the original composition.",
+    "source_image": "assets/images_test/image_1_1.png",
+    "edited_images": [
+      "assets/images_test/image_1_2.png",
+      "assets/images_test/image_2_1.png"
+    ],
+    "label_rank": [1, 2]
+  },
+  {
+    "query": "Make the scene colder and snowy while keeping the bridge structure consistent.",
+    "source_image": "assets/images_test/image_4_1.png",
+    "edited_images": [
+      "assets/images_test/image_4_2.png",
+      "assets/images_test/image_3_1.png"
+    ],
+    "label_rank": [1, 2]
+  }
+]

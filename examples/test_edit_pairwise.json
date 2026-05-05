@@ -1,0 +1,11 @@
+[
+  {
+    "query": "Adjust the scene to look warmer without changing the main objects.",
+    "source_image": "assets/images_test/image_3_1.png",
+    "edited_images": [
+      "assets/images_test/image_3_2.png",
+      "assets/images_test/image_4_1.png"
+    ],
+    "label_rank": [1, 2]
+  }
+]

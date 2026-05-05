@@ -1,0 +1,18 @@
+grader_name: "image quality comparator"
+language: "en"         
+task_type: "image_edit"
+eval_mode: "pairwise"
+min_score: 1
+max_score: 5
+base_url: "http://localhost:8000/v1"
+task_description: |
+  Compare two Qwen-Image-Edit outputs against the original image and edit
+  instruction. Prefer edits that satisfy the instruction while preserving
+  unrelated content and avoiding artifacts.
+
+model_name: "Qwen/Qwen3-VL-8B-Instruct"
+api_key: "EMPTY"     
+
+query_specific_generate_number: 5
+enable_categorization: true
+categories_number: 5
