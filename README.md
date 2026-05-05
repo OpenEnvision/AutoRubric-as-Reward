@@ -1,4 +1,4 @@
-<h1 align="center">Auto-Rubric as Visual Reward</h1>
+<h1 align="center">Auto-Rubric as Reward</h1>
 
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/arXiv-coming_soon-B31B1B?logo=arxiv&logoColor=white" alt="arXiv"></a>
