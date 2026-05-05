@@ -73,9 +73,9 @@ Large checkpoints, processed embeddings, and training outputs are intentionally 
 Create the environment:
 
 ```bash
-cd /path/to/Vision-Auto-Rubric
-conda create -n vision-auto-rubric python=3.10 -y
-conda activate vision-auto-rubric
+cd /path/to/AutoRubric-as-Reward
+conda create -n autorubric-as-reward python=3.10 -y
+conda activate autorubric-as-reward
 bash env_setup.sh
 ```
 
