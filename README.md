@@ -21,7 +21,7 @@
 
 ## What This Repo Does
 
-Vision-Auto-Rubric provides a compact implementation of Auto-Rubric as Reward for visual generation. It turns a small set of labeled visual preference examples into explicit, inspectable rubric text, then uses a frozen VLM judge conditioned on those rubrics to produce pairwise rewards for RPO.
+Auto-Rubric provides a compact implementation of Auto-Rubric as Reward for visual generation. It turns a small set of labeled visual preference examples into explicit, inspectable rubric text, then uses a frozen VLM judge conditioned on those rubrics to produce pairwise rewards for RPO.
 
 ```text
 labeled visual pairs
