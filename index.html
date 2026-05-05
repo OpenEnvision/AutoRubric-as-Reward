@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auto-Rubric as Reward</title>
+    <meta
+      name="description"
+      content="Project homepage for Auto-Rubric as Reward: From Implicit Preference to Explicit Generative Criteria."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/site.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="container header-row">
+          <a class="brand" href="#top" aria-label="Auto-Rubric as Reward home">
+            <img
+              src="assets/branding/vision_auto_rubric_mark.svg"
+              alt="Auto-Rubric mark"
+              width="48"
+              height="48"
+            />
+            <div class="brand-copy">
+              <span class="brand-kicker">OpenEnvision</span>
+              <strong>Auto-Rubric as Reward</strong>
+            </div>
+          </a>
+
+          <nav class="site-nav" aria-label="Primary">
+            <a href="#abstract">Abstract</a>
+            <a href="#method">Method</a>
+            <a href="#results">Results</a>
+            <a href="#examples">Examples</a>
+            <a href="#start">Get Started</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div class="container hero-grid">
+            <div class="hero-copy" data-reveal>
+              <p class="eyebrow">Explicit reward criteria for visual generation</p>
+              <h1>Auto-Rubric as Reward</h1>
+              <p class="hero-subtitle">
+                From implicit preference signals to explicit, verifiable generative
+                criteria for reward policy optimization.
+              </p>
+              <div class="author-block">
+                <p class="author-line">
+                  Juanxi Tian<sup>1,2,*</sup>, Fengyuan Liu<sup>1,*</sup>, Jiaming
+                  Han<sup>3</sup>, Yilei Jiang<sup>3</sup>, Yongliang
+                  Wu<sup>4</sup>, Yesheng Liu<sup>1</sup>, Haodong Li<sup>1</sup>,
+                  Furong Xu<sup>2</sup>, Wanhua Li<sup>1,&dagger;</sup>
+                </p>
+                <p class="affiliation-line">
+                  <span><sup>1</sup>Nanyang Technological University</span>
+                  <span><sup>2</sup>Ant Group</span>
+                  <span><sup>3</sup>CUHK MMLab</span>
+                  <span><sup>4</sup>UIUC</span>
+                </p>
+                <p class="author-note">
+                  <span><sup>*</sup>Equal first authorship</span>
+                  <span><sup>&dagger;</sup>Corresponding author</span>
+                </p>
+              </div>
+              <p class="hero-body">
+                Auto-Rubric as Reward converts a small set of labeled visual
+                preference pairs into readable rubric text, verifies those criteria
+                against supervision, and reuses the resulting reward specification
+                to guide both text-to-image generation and image editing.
+              </p>
+
+              <div class="hero-actions">
+                <a class="button button-primary" href="NeurIPS_2026_Auto_Rubric-14.pdf">
+                  Read Paper
+                </a>
+                <a
+                  class="button button-secondary"
+                  href="https://github.com/OpenEnvision/AutoRubric-as-Reward"
+                >
+                  View Code
+                </a>
+                <a
+                  class="button button-secondary"
+                  href="https://huggingface.co/OpenEnvisionLab/ARR-RPO"
+                >
+                  Model Card
+                </a>
+              </div>
+
+              <div class="tag-row" aria-label="Project scope">
+                <span>Text-to-Image</span>
+                <span>Image Editing</span>
+                <span>VLM Judging</span>
+                <span>RPO Training</span>
+              </div>
+            </div>
+
+            <div class="hero-visual" data-reveal>
+              <figure class="hero-figure card">
+                <img
+                  src="assets/site/figures/methods.png"
+                  alt="Pipeline overview for Auto-Rubric as Reward"
+                />
+              </figure>
+
+              <div class="floating-card floating-card-top">
+                <span class="stat-label">Explicit reward specification</span>
+                <strong>Readable, revisable rubrics instead of latent preference heuristics</strong>
+              </div>
+
+              <div class="floating-card floating-card-bottom">
+                <span class="stat-label">Judge-agnostic transfer</span>
+                <strong>Rubrics improve direct judging across GPT-5, Gemini 3.1 Pro, and Qwen3-VL</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="signal-band">
+          <div class="container signal-grid" data-reveal>
+            <article class="signal-card">
+              <span class="signal-number">01</span>
+              <h2>Generate</h2>
+              <p>Derive concrete evaluation criteria from labeled preference pairs.</p>
+            </article>
+            <article class="signal-card">
+              <span class="signal-number">02</span>
+              <h2>Verify</h2>
+              <p>Retain only rubric candidates that recover the expected preference.</p>
+            </article>
+            <article class="signal-card">
+              <span class="signal-number">03</span>
+              <h2>Optimize</h2>
+              <p>Turn verified rankings into pairwise rewards for ARR-RPO training.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="abstract">
+          <div class="container narrow" data-reveal>
+            <p class="section-kicker">Abstract</p>
+            <h2 class="section-title">A reward pipeline that stays readable</h2>
+            <p class="section-lead">
+              Pairwise visual preference labels are useful but opaque: a judge can
+              choose the better image without ever making its standard explicit.
+              Auto-Rubric as Reward addresses this gap by first eliciting concrete
+              criteria from a vision-language model, then verifying and refining
+              those criteria against supervision before reusing them as a structured
+              reward specification. The result is a reward pipeline that is
+              inspectable, reusable, and directly aligned with the actual
+              generation task rather than a latent aesthetic prior.
+            </p>
+          </div>
+        </section>
+
+        <section class="section section-alt">
+          <div class="container">
+            <div class="section-heading" data-reveal>
+              <p class="section-kicker">Why explicit rubrics?</p>
+              <h2 class="section-title">Better reward signals begin with visible criteria</h2>
+            </div>
+
+            <div class="three-up">
+              <article class="feature-card card" data-reveal>
+                <h3>Inspectable</h3>
+                <p>
+                  Reward behavior is written in plain language. Researchers can
+                  read, edit, prune, and version-control the criteria instead of
+                  treating reward modeling as a black box.
+                </p>
+              </article>
+
+              <article class="feature-card card" data-reveal>
+                <h3>Verifiable</h3>
+                <p>
+                  Candidate rubrics are not accepted on faith. They must explain
+                  the labeled preference pair and are revised when the judge fails
+                  to recover the expected ordering.
+                </p>
+              </article>
+
+              <article class="feature-card card" data-reveal>
+                <h3>Reusable</h3>
+                <p>
+                  Once verified, rubric sets can be reused across runs, benchmark
+                  settings, and judge backends for deterministic and auditable
+                  experiments.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="method">
+          <div class="container">
+            <div class="section-heading" data-reveal>
+              <p class="section-kicker">Method</p>
+              <h2 class="section-title">From preference examples to ARR-RPO rewards</h2>
+            </div>
+
+            <div class="method-layout">
+              <figure class="figure-card card wide" data-reveal>
+                <a href="assets/image/methods.pdf">
+                  <img
+                    src="assets/site/figures/methods.png"
+                    alt="Method diagram for Auto-Rubric as Reward"
+                  />
+                </a>
+                <figcaption>
+                  The pipeline generates query-specific rubrics, verifies them on
+                  labeled examples, structures the surviving criteria, and uses a
+                  frozen ARR judge to produce pairwise rewards for policy
+                  optimization.
+                </figcaption>
+              </figure>
+
+              <div class="stacked-notes">
+                <article class="note-card card" data-reveal>
+                  <span class="note-index">Step 1</span>
+                  <h3>Query-specific rubric generation</h3>
+                  <p>
+                    A labeled pair provides the preference signal; the VLM then
+                    proposes concrete dimensions such as prompt adherence,
+                    structural fidelity, edit accuracy, or artifact control.
+                  </p>
+                </article>
+
+                <article class="note-card card" data-reveal>
+                  <span class="note-index">Step 2</span>
+                  <h3>Verification and refinement</h3>
+                  <p>
+                    The same rubric must recover the ground-truth ranking. Failed
+                    criteria are revised rather than silently passed through.
+                  </p>
+                </article>
+
+                <article class="note-card card" data-reveal>
+                  <span class="note-index">Step 3</span>
+                  <h3>Structured reward reuse</h3>
+                  <p>
+                    Verified rubrics are grouped into reusable theme-tip
+                    structures, then consumed by a frozen VLM judge whose pairwise
+                    decisions are converted into ARR rewards.
+                  </p>
+                </article>
+              </div>
+            </div>
+
+            <div class="two-up two-up-tight">
+              <figure class="figure-card card" data-reveal>
+                <a href="assets/image/arr_t2i.pdf">
+                  <img
+                    src="assets/site/figures/arr_t2i.png"
+                    alt="Example text-to-image rubric produced by Auto-Rubric"
+                  />
+                </a>
+                <figcaption>
+                  A generated text-to-image rubric can explicitly encode
+                  architecture, lighting realism, material fidelity, composition,
+                  and artifact control.
+                </figcaption>
+              </figure>
+
+              <figure class="figure-card card" data-reveal>
+                <a href="assets/image/arr_edit.pdf">
+                  <img
+                    src="assets/site/figures/arr_edit.png"
+                    alt="Example image-edit rubric produced by Auto-Rubric"
+                  />
+                </a>
+                <figcaption>
+                  For editing, the criteria shift toward instruction fulfillment,
+                  source preservation, local blending quality, and unintended
+                  modification control.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section-alt" id="results">
+          <div class="container">
+            <div class="section-heading" data-reveal>
+              <p class="section-kicker">Results</p>
+              <h2 class="section-title">Consistent gains across evaluators, preference benchmarks, and generation benchmarks</h2>
+              <p class="section-lead">
+                We report two complementary views of performance: evaluator
+                accuracy on human-labeled preference benchmarks, and downstream
+                generative quality on text-to-image and image-editing benchmarks.
+              </p>
+            </div>
+
+            <div class="results-grid">
+              <figure class="figure-card card results-main" data-reveal>
+                <a href="assets/image/performance.pdf">
+                  <img
+                    src="assets/site/figures/performance.png"
+                    alt="Benchmark gains over specialist baseline models"
+                  />
+                </a>
+                <figcaption>
+                  ARR-RPO improves both FLUX.1-Dev and Qwen-Image-Edit-2509
+                  across GenEval, DPG-Bench, TIIF, UniGenBench++ (Short and
+                  Long), GEdit-Bench, and ImgEdit.
+                </figcaption>
+              </figure>
+
+              <div class="results-side">
+                <figure class="figure-card card" data-reveal>
+                  <a href="assets/image/cross_model.pdf">
+                    <img
+                      src="assets/site/figures/cross_model.png"
+                      alt="Cross-model rubric transfer chart"
+                    />
+                  </a>
+                  <figcaption>
+                    The structured rubric transfers cleanly across judge families,
+                    yielding up to <strong>+3.3</strong> points over direct,
+                    rubric-free evaluation.
+                  </figcaption>
+                </figure>
+
+                <article class="highlight-card card" data-reveal>
+                  <h3>What the results suggest</h3>
+                  <ul>
+                    <li>Explicit criteria improve alignment without sacrificing interpretability.</li>
+                    <li>Task-aware rubrics reduce the tendency to reward generic prettiness.</li>
+                    <li>Image editing especially benefits from preservation-aware judging.</li>
+                    <li>Reusable rubric files make long ARR-RPO runs easier to audit and reproduce.</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+
+            <div class="benchmark-panels">
+              <article class="benchmark-card card" data-reveal>
+                <div class="benchmark-head">
+                  <div>
+                    <p class="benchmark-kicker">Preference evaluation</p>
+                    <h3>Evaluator performance across four preference benchmarks</h3>
+                  </div>
+                  <p class="benchmark-note">
+                    Accuracy denotes agreement with human preference labels.
+                  </p>
+                </div>
+                <div class="table-wrap">
+                  <table class="benchmark-table">
+                    <thead>
+                      <tr>
+                        <th>Method</th>
+                        <th>HPDv3</th>
+                        <th>MM-RewardBench2 (T2I)</th>
+                        <th>MM-RewardBench2 (Edit)</th>
+                        <th>EditReward-Bench</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="group-row">
+                        <td colspan="5">Trained reward model</td>
+                      </tr>
+                      <tr>
+                        <td>PickScore</td>
+                        <td>65.6</td>
+                        <td>58.6</td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr>
+                        <td>ImageReward</td>
+                        <td>58.6</td>
+                        <td>54.0</td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr>
+                        <td>UnifiedReward</td>
+                        <td>66.0</td>
+                        <td>59.8</td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr>
+                        <td>UnifiedReward-Thinking</td>
+                        <td>68.1</td>
+                        <td>66.0</td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr>
+                        <td>HPSv3</td>
+                        <td>76.9</td>
+                        <td>60.2</td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr>
+                        <td>EditReward</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>67.2</td>
+                        <td>56.45</td>
+                      </tr>
+                      <tr class="group-row">
+                        <td colspan="5">VLM-as-Judge (direct)</td>
+                      </tr>
+                      <tr>
+                        <td>Qwen3-VL-8B</td>
+                        <td>67.2</td>
+                        <td>57.6</td>
+                        <td>59.2</td>
+                        <td>54.01</td>
+                      </tr>
+                      <tr>
+                        <td>GPT-5</td>
+                        <td>72.4</td>
+                        <td>70.5</td>
+                        <td>73.8</td>
+                        <td>57.53</td>
+                      </tr>
+                      <tr>
+                        <td>Gemini 3.1 Pro</td>
+                        <td>76.6</td>
+                        <td>75.1</td>
+                        <td>77.4</td>
+                        <td>61.23</td>
+                      </tr>
+                      <tr class="group-row arr-row">
+                        <td colspan="5">ARR (ours)</td>
+                      </tr>
+                      <tr class="arr-row">
+                        <td>Qwen3-VL-8B + ARR</td>
+                        <td>70.2 <span class="gain">(+3.0)</span></td>
+                        <td>62.7 <span class="gain">(+5.1)</span></td>
+                        <td>65.5 <span class="gain">(+6.3)</span></td>
+                        <td>57.22 <span class="gain">(+3.21)</span></td>
+                      </tr>
+                      <tr class="arr-row">
+                        <td>GPT-5 + ARR</td>
+                        <td>76.1 <span class="gain">(+3.7)</span></td>
+                        <td>74.7 <span class="gain">(+4.2)</span></td>
+                        <td>77.5 <span class="gain">(+3.7)</span></td>
+                        <td>61.01 <span class="gain">(+3.48)</span></td>
+                      </tr>
+                      <tr class="arr-row best-row">
+                        <td>Gemini 3.1 Pro + ARR</td>
+                        <td>78.3 <span class="gain">(+1.7)</span></td>
+                        <td>78.9 <span class="gain">(+3.8)</span></td>
+                        <td>79.2 <span class="gain">(+1.8)</span></td>
+                        <td>63.27 <span class="gain">(+2.04)</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+
+              <article class="benchmark-card card" data-reveal>
+                <div class="benchmark-head">
+                  <div>
+                    <p class="benchmark-kicker">Generative quality</p>
+                    <h3>Text-to-image and image-editing performance under ARR-RPO</h3>
+                  </div>
+                  <p class="benchmark-note">
+                    Best results are achieved by ARR-RPO with rubric-conditioned
+                    judges, especially under Gemini 3.1 Pro.
+                  </p>
+                </div>
+                <div class="table-wrap">
+                  <table class="benchmark-table benchmark-table-wide">
+                    <thead>
+                      <tr>
+                        <th>Method</th>
+                        <th>GenEval</th>
+                        <th>DPG-Bench</th>
+                        <th>TIIF</th>
+                        <th>UniGen++ Short</th>
+                        <th>UniGen++ Long</th>
+                        <th>GEdit-Bench</th>
+                        <th>ImgEdit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="group-row">
+                        <td colspan="8">Specialist model (T2I)</td>
+                      </tr>
+                      <tr>
+                        <td>Emu3</td>
+                        <td>0.54</td>
+                        <td>80.60</td>
+                        <td>--</td>
+                        <td>45.42</td>
+                        <td>50.59</td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr>
+                        <td>JanusFlow</td>
+                        <td>0.63</td>
+                        <td>79.68</td>
+                        <td>--</td>
+                        <td>47.10</td>
+                        <td>54.80</td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr>
+                        <td>FLUX.1-Dev</td>
+                        <td>0.66</td>
+                        <td>83.84</td>
+                        <td>71.09</td>
+                        <td>60.97</td>
+                        <td>69.42</td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr>
+                        <td>DALL·E 3</td>
+                        <td>0.67</td>
+                        <td>83.50</td>
+                        <td>74.96</td>
+                        <td>68.85</td>
+                        <td>70.82</td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr>
+                        <td>Show-o2</td>
+                        <td>0.76</td>
+                        <td>86.14</td>
+                        <td>--</td>
+                        <td>61.90</td>
+                        <td>70.33</td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr>
+                        <td>OmniGen2</td>
+                        <td>0.80</td>
+                        <td>83.57</td>
+                        <td>--</td>
+                        <td>63.09</td>
+                        <td>71.39</td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr>
+                        <td>BAGEL</td>
+                        <td>0.82</td>
+                        <td>85.07</td>
+                        <td>71.50</td>
+                        <td>59.91</td>
+                        <td>71.26</td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr class="group-row arr-row">
+                        <td colspan="8">ARR-RPO / T2I (ours)</td>
+                      </tr>
+                      <tr class="arr-row">
+                        <td>w/ RPO-Qwen3-VL-8B-ARR</td>
+                        <td>0.74 <span class="gain">(+0.08)</span></td>
+                        <td>85.03 <span class="gain">(+1.19)</span></td>
+                        <td>74.92 <span class="gain">(+3.83)</span></td>
+                        <td>64.17 <span class="gain">(+3.20)</span></td>
+                        <td>71.82 <span class="gain">(+2.40)</span></td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr class="arr-row">
+                        <td>w/ RPO-GPT-5-ARR</td>
+                        <td>0.78 <span class="gain">(+0.12)</span></td>
+                        <td>85.41 <span class="gain">(+1.57)</span></td>
+                        <td>76.18 <span class="gain">(+5.09)</span></td>
+                        <td>65.36 <span class="gain">(+4.39)</span></td>
+                        <td>72.41 <span class="gain">(+2.99)</span></td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr class="arr-row best-row">
+                        <td>w/ RPO-Gemini 3.1 Pro-ARR</td>
+                        <td>0.80 <span class="gain">(+0.14)</span></td>
+                        <td>85.76 <span class="gain">(+1.92)</span></td>
+                        <td>76.85 <span class="gain">(+5.76)</span></td>
+                        <td>65.89 <span class="gain">(+4.92)</span></td>
+                        <td>72.93 <span class="gain">(+3.51)</span></td>
+                        <td>---</td>
+                        <td>---</td>
+                      </tr>
+                      <tr class="group-row">
+                        <td colspan="8">Specialist model (editing)</td>
+                      </tr>
+                      <tr>
+                        <td>Instruct-Pix2Pix</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>3.68</td>
+                        <td>1.88</td>
+                      </tr>
+                      <tr>
+                        <td>AnyEdit</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>3.21</td>
+                        <td>2.45</td>
+                      </tr>
+                      <tr>
+                        <td>Step1X-Edit</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>6.97</td>
+                        <td>3.06</td>
+                      </tr>
+                      <tr>
+                        <td>Qwen-Image-Edit-2509</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>7.54</td>
+                        <td>4.35</td>
+                      </tr>
+                      <tr>
+                        <td>UniWorldv2</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>7.76</td>
+                        <td>4.48</td>
+                      </tr>
+                      <tr class="group-row arr-row">
+                        <td colspan="8">ARR-RPO / image editing (ours)</td>
+                      </tr>
+                      <tr class="arr-row">
+                        <td>w/ RPO-Qwen3-VL-8B-ARR</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>7.66 <span class="gain">(+0.12)</span></td>
+                        <td>4.38 <span class="gain">(+0.03)</span></td>
+                      </tr>
+                      <tr class="arr-row">
+                        <td>w/ RPO-GPT-5-ARR</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>7.72 <span class="gain">(+0.18)</span></td>
+                        <td>4.40 <span class="gain">(+0.05)</span></td>
+                      </tr>
+                      <tr class="arr-row best-row">
+                        <td>w/ RPO-Gemini 3.1 Pro-ARR</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>---</td>
+                        <td>7.85 <span class="gain">(+0.31)</span></td>
+                        <td>4.43 <span class="gain">(+0.08)</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="examples">
+          <div class="container">
+            <div class="section-heading" data-reveal>
+              <p class="section-kicker">Qualitative examples</p>
+              <h2 class="section-title">Instruction fidelity, structural realism, and cleaner edits</h2>
+            </div>
+
+            <div class="example-pyramid">
+              <figure class="figure-card card example-top" data-reveal>
+                <a href="assets/image/results.pdf">
+                  <img
+                    src="assets/site/figures/results.png"
+                    alt="Combined qualitative results for text-to-image and image editing"
+                  />
+                </a>
+                <figcaption>
+                  ARR-RPO improves prompt satisfaction, structural plausibility,
+                  and edit consistency while preserving source-image content when
+                  the task requires it.
+                </figcaption>
+              </figure>
+
+              <figure class="figure-card card" data-reveal>
+                <a href="assets/image/t2i_example.pdf">
+                  <img
+                    src="assets/site/figures/t2i_example.png"
+                    alt="Text-to-image qualitative examples"
+                  />
+                </a>
+                <figcaption>
+                  Text-to-image results show stronger content matching and
+                  compositional control under rubric-conditioned optimization.
+                </figcaption>
+              </figure>
+
+              <figure class="figure-card card" data-reveal>
+                <a href="assets/image/edit_example.pdf">
+                  <img
+                    src="assets/site/figures/edit_example.png"
+                    alt="Image-editing qualitative examples"
+                  />
+                </a>
+                <figcaption>
+                  Image-editing examples preserve identity and scene structure
+                  while carrying out localized edits more faithfully.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section-alt" id="start">
+          <div class="container start-grid">
+            <div class="start-copy" data-reveal>
+              <p class="section-kicker">Get started</p>
+              <h2 class="section-title">Run the pipeline with your own judge</h2>
+              <p class="section-lead">
+                The repository includes the full Auto-Rubric pipeline, example
+                datasets, reusable rubric files, and RPO training launchers for
+                both FLUX text-to-image and Qwen-Image-Edit.
+              </p>
+
+              <div class="resource-list">
+                <a href="README.md">Repository README</a>
+                <a href="docs/auto_rubric/README.md">Auto-Rubric documentation</a>
+                <a href="docs/training.md">Training guide</a>
+              </div>
+            </div>
+
+            <div class="code-card card" data-reveal>
+              <pre><code>conda create -n vision-auto-rubric python=3.10 -y
+conda activate vision-auto-rubric
+bash env_setup.sh
+
+MODEL_PATH=Qwen/Qwen3-VL-8B-Instruct TP_SIZE=1 PORT=8000 \
+  bash rubric_pipeline/vllm_serve.sh
+
+python judger.py \
+  --config_path rubric_pipeline/config/qwen3vl_8B_instruct_t2i.yaml \
+  --seed_dataset examples/seed_t2i_pairwise.json \
+  --test_dataset examples/test_t2i_pairwise.json \
+  --base_url http://localhost:8000/v1</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="section citation-section">
+          <div class="container citation-grid">
+            <div data-reveal>
+              <p class="section-kicker">Citation</p>
+              <h2 class="section-title">BibTeX</h2>
+              <p class="section-lead">
+                If Auto-Rubric as Reward is useful in your work, please cite the
+                project and link back to the repository.
+              </p>
+            </div>
+
+            <div class="code-card card" data-reveal>
+              <pre><code>@misc{open2026auto,
+  title        = {Auto-Rubric as Reward: From Implicit Preference to Explicit Generative Criteria},
+  author       = {Anonymous},
+  year         = {2026},
+  note         = {arXiv coming soon}
+}</code></pre>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-row">
+          <p>OpenEnvision</p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="assets/site.js"></script>
+  </body>
+</html>
