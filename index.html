@@ -6,12 +6,12 @@
     <title>Auto-Rubric as Reward</title>
     <meta
       name="description"
-      content="Project homepage for Auto-Rubric as Reward: From Implicit Preference to Explicit Generative Criteria."
+      content="Auto-Rubric as Reward turns pairwise visual preferences into explicit, verifiable rubrics for text-to-image and image-editing optimization."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Sora:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/site.css" />
@@ -21,24 +21,17 @@
       <header class="site-header">
         <div class="container header-row">
           <a class="brand" href="#top" aria-label="Auto-Rubric as Reward home">
-            <img
-              src="assets/branding/vision_auto_rubric_mark.svg"
-              alt="Auto-Rubric mark"
-              width="48"
-              height="48"
-            />
-            <div class="brand-copy">
+            <span class="brand-copy">
               <span class="brand-kicker">OpenEnvision</span>
               <strong>Auto-Rubric as Reward</strong>
-            </div>
+            </span>
           </a>
 
           <nav class="site-nav" aria-label="Primary">
-            <a href="#abstract">Abstract</a>
+            <a href="#overview">Overview</a>
             <a href="#method">Method</a>
-            <a href="#results">Results</a>
-            <a href="#examples">Examples</a>
-            <a href="#start">Get Started</a>
+            <a href="#benchmarks">Benchmarks</a>
+            <a href="#qualitative">Qualitative</a>
           </nav>
         </div>
       </header>
@@ -50,13 +43,14 @@
               <p class="eyebrow">Explicit reward criteria for visual generation</p>
               <h1>Auto-Rubric as Reward</h1>
               <p class="hero-subtitle">
-                From implicit preference signals to explicit, verifiable generative
-                criteria for reward policy optimization.
+                From Implicit Preferences to Explicit Multimodal Generative
+                Criteria
               </p>
+
               <div class="author-block">
                 <p class="author-line">
-                  Juanxi Tian<sup>1,2,*</sup>, Fengyuan Liu<sup>1,*</sup>, Jiaming
-                  Han<sup>3</sup>, Yilei Jiang<sup>3</sup>, Yongliang
+                  Juanxi Tian<sup>1,2,*</sup>, Fengyuan Liu<sup>1,*</sup>,
+                  Jiaming Han<sup>3</sup>, Yilei Jiang<sup>3</sup>, Yongliang
                   Wu<sup>4</sup>, Yesheng Liu<sup>1</sup>, Haodong Li<sup>1</sup>,
                   Furong Xu<sup>2</sup>, Wanhua Li<sup>1,&dagger;</sup>
                 </p>
@@ -71,129 +65,222 @@
                   <span><sup>&dagger;</sup>Corresponding author</span>
                 </p>
               </div>
+
               <p class="hero-body">
                 Auto-Rubric as Reward converts a small set of labeled visual
-                preference pairs into readable rubric text, verifies those criteria
-                against supervision, and reuses the resulting reward specification
-                to guide both text-to-image generation and image editing.
+                supervision into readable rubric text, supports both pointwise
+                and pairwise VLM grading, and lets practitioners freely scale up
+                the rubric dimensions they care about. On top of that, we
+                provide a concise pairwise online RL algorithm for diffusion
+                models that emphasizes data efficiency, training stability, and
+                scalability, verifying that Rubric as Reward extends beyond
+                multimodal reasoning into multimodal generation, including
+                text-to-image and image editing.
               </p>
 
               <div class="hero-actions">
-                <a class="button button-primary" href="NeurIPS_2026_Auto_Rubric-14.pdf">
-                  Read Paper
+                <a class="icon-button icon-button-paper is-disabled" href="#" aria-disabled="true">
+                  <span class="button-icon" aria-hidden="true">
+                    <img
+                      src="https://arxiv.org/static/browse/0.3.4/images/arxiv-logomark-small-white.svg"
+                      alt=""
+                      width="22"
+                      height="22"
+                    />
+                  </span>
+                  <span>Paper</span>
                 </a>
                 <a
-                  class="button button-secondary"
+                  class="icon-button icon-button-code"
                   href="https://github.com/OpenEnvision/AutoRubric-as-Reward"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  View Code
-                </a>
-                <a
-                  class="button button-secondary"
-                  href="https://huggingface.co/OpenEnvisionLab/ARR-RPO"
-                >
-                  Model Card
+                  <span class="button-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="presentation">
+                      <path
+                        d="M12 .5C5.65.5.5 5.66.5 12.03c0 5.1 3.3 9.42 7.88 10.95.58.1.79-.25.79-.56 0-.28-.01-1.2-.02-2.17-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.69-1.28-1.69-1.04-.72.08-.71.08-.71 1.15.08 1.76 1.19 1.76 1.19 1.02 1.77 2.67 1.26 3.33.96.1-.75.4-1.26.72-1.56-2.56-.29-5.24-1.29-5.24-5.73 0-1.27.45-2.31 1.18-3.12-.12-.29-.51-1.48.11-3.08 0 0 .97-.31 3.18 1.19a10.9 10.9 0 0 1 5.79 0c2.21-1.5 3.17-1.19 3.17-1.19.63 1.6.24 2.79.12 3.08.74.81 1.18 1.85 1.18 3.12 0 4.45-2.69 5.43-5.26 5.72.41.36.78 1.07.78 2.16 0 1.56-.02 2.82-.02 3.21 0 .31.2.67.8.56a11.55 11.55 0 0 0 7.87-10.95C23.5 5.66 18.35.5 12 .5Z"
+                      />
+                    </svg>
+                  </span>
+                  <span>Code</span>
                 </a>
               </div>
 
-              <div class="tag-row" aria-label="Project scope">
+              <div class="hero-tags" aria-label="Project scope">
                 <span>Text-to-Image</span>
                 <span>Image Editing</span>
-                <span>VLM Judging</span>
-                <span>RPO Training</span>
+                <span>VLM-as-Judge</span>
+                <span>Auto-Rubric</span>
+                <span>Rubric as Reward</span>
               </div>
             </div>
 
             <div class="hero-visual" data-reveal>
-              <figure class="hero-figure card">
-                <img
-                  src="assets/site/figures/methods.png"
-                  alt="Pipeline overview for Auto-Rubric as Reward"
-                />
-              </figure>
-
-              <div class="floating-card floating-card-top">
-                <span class="stat-label">Explicit reward specification</span>
-                <strong>Readable, revisable rubrics instead of latent preference heuristics</strong>
+              <div class="visual-stack card">
+                <div class="visual-kicker">
+                  <span>Pipeline Overview</span>
+                  <span>Final paper-aligned story</span>
+                </div>
+                <figure class="hero-figure">
+                  <img
+                    src="assets/site/figures/methods.png"
+                    alt="Pipeline overview for Auto-Rubric as Reward"
+                  />
+                </figure>
               </div>
 
-              <div class="floating-card floating-card-bottom">
-                <span class="stat-label">Judge-agnostic transfer</span>
-                <strong>Rubrics improve direct judging across GPT-5, Gemini 3.1 Pro, and Qwen3-VL</strong>
+              <div class="floating-panel floating-panel-top">
+                <span class="panel-label">Core Thesis</span>
+                <strong>Readable rubrics replace hidden reward heuristics.</strong>
+                <p>
+                  The judge no longer improvises a standard from scratch on every
+                  comparison.
+                </p>
+              </div>
+
+              <div class="floating-panel floating-panel-bottom">
+                <span class="panel-label">Cross-Judge Benefit</span>
+                <strong>Explicit rubrics make judgment criteria portable.</strong>
+                <p>
+                  Once the desired dimensions are written down, different VLM
+                  judges stop improvising the evaluation standard and start
+                  aligning around the same task-specific notion of quality.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="signal-band">
-          <div class="container signal-grid" data-reveal>
-            <article class="signal-card">
-              <span class="signal-number">01</span>
-              <h2>Generate</h2>
-              <p>Derive concrete evaluation criteria from labeled preference pairs.</p>
+        <section class="thesis-strip" id="overview">
+          <div class="container thesis-grid" data-reveal>
+            <article class="thesis-card">
+              <span class="thesis-index">01</span>
+              <h2>Generate Criteria</h2>
+              <p>
+                Start from labeled supervision and ask a VLM to spell out the
+                exact visual dimensions that should matter for scoring or
+                ranking.
+              </p>
             </article>
-            <article class="signal-card">
-              <span class="signal-number">02</span>
-              <h2>Verify</h2>
-              <p>Retain only rubric candidates that recover the expected preference.</p>
+            <article class="thesis-card">
+              <span class="thesis-index">02</span>
+              <h2>Verify Before Use</h2>
+              <p>
+                Keep only rubrics that recover the intended answer in pointwise
+                or pairwise settings, and revise them when they miss the target.
+              </p>
             </article>
-            <article class="signal-card">
-              <span class="signal-number">03</span>
-              <h2>Optimize</h2>
-              <p>Turn verified rankings into pairwise rewards for ARR-RPO training.</p>
+            <article class="thesis-card">
+              <span class="thesis-index">03</span>
+              <h2>Auto-Rubric As Reward</h2>
+              <p>
+                Reuse the verified rubric set inside a frozen judge and connect
+                it to a minimal pairwise online RL loop for diffusion training.
+              </p>
             </article>
           </div>
         </section>
 
-        <section class="section" id="abstract">
-          <div class="container narrow" data-reveal>
-            <p class="section-kicker">Abstract</p>
-            <h2 class="section-title">A reward pipeline that stays readable</h2>
-            <p class="section-lead">
-              Pairwise visual preference labels are useful but opaque: a judge can
-              choose the better image without ever making its standard explicit.
-              Auto-Rubric as Reward addresses this gap by first eliciting concrete
-              criteria from a vision-language model, then verifying and refining
-              those criteria against supervision before reusing them as a structured
-              reward specification. The result is a reward pipeline that is
-              inspectable, reusable, and directly aligned with the actual
-              generation task rather than a latent aesthetic prior.
-            </p>
+        <section class="section">
+          <div class="container intro-grid">
+            <div class="section-heading narrow" data-reveal>
+              <p class="section-kicker">Abstract</p>
+              <h2 class="section-title">Auto-Rubric as Reward</h2>
+              <p class="section-lead">
+                Aligning multimodal generative models with human preferences
+                requires reward signals that preserve the compositional and
+                multi-dimensional structure of judgment. Auto-Rubric as Reward
+                reframes reward modeling from implicit weight optimization to
+                explicit, criteria-based decomposition: before any comparison,
+                it externalizes a VLM's internalized preference knowledge into
+                prompt-specific rubrics, verifies those criteria against minimal
+                supervision, and consolidates them into a reusable structured
+                protocol for pointwise grading, pairwise evaluation, and reward
+                construction. By converting latent preference structure into
+                inspectable multimodal criteria, ARR reduces positional bias,
+                improves data efficiency, and exposes a stable factorized
+                interface for both zero-shot evaluation and downstream
+                generative alignment.
+              </p>
+            </div>
+
+            <div class="signal-cluster" data-reveal>
+              <article class="signal-panel card">
+                <span class="signal-tag">Why it matters</span>
+                <p>
+                  The central bottleneck is not that VLMs lack preference
+                  knowledge, but that existing scalar and pairwise objectives
+                  fail to expose a stable factorized interface for applying it.
+                  ARR addresses this mismatch by transforming holistic, latent
+                  judgments into explicit and independently verifiable
+                  multimodal criteria, thereby improving interpretability,
+                  reducing reward hacking risk, and suppressing positional bias.
+                </p>
+              </article>
+              <article class="signal-panel card">
+                <span class="signal-tag">Where it works</span>
+                <p>
+                  ARR supports both pointwise and pairwise VLM evaluation, then
+                  extends naturally into multimodal generation through rubric-
+                  conditioned policy optimization. In the paper, this interface
+                  scales from evaluator fidelity benchmarks to text-to-image and
+                  image-editing post-training, where explicit criteria become a
+                  reusable supervision substrate rather than a task-specific
+                  prompt trick.
+                </p>
+              </article>
+            </div>
           </div>
         </section>
 
         <section class="section section-alt">
           <div class="container">
             <div class="section-heading" data-reveal>
-              <p class="section-kicker">Why explicit rubrics?</p>
-              <h2 class="section-title">Better reward signals begin with visible criteria</h2>
+              <p class="section-kicker">Contributions</p>
+              <h2 class="section-title">Designed for interpretability without giving up performance</h2>
             </div>
 
-            <div class="three-up">
+            <div class="feature-grid">
               <article class="feature-card card" data-reveal>
-                <h3>Inspectable</h3>
+                <span class="feature-number">A</span>
+                <h3>Explicit Reward Language</h3>
                 <p>
-                  Reward behavior is written in plain language. Researchers can
-                  read, edit, prune, and version-control the criteria instead of
-                  treating reward modeling as a black box.
+                  ARR externalizes implicit multimodal preferences into
+                  prompt-conditioned natural-language rubrics that are
+                  interpretable, verifiable, and highly data-efficient.
                 </p>
               </article>
 
               <article class="feature-card card" data-reveal>
-                <h3>Verifiable</h3>
+                <span class="feature-number">B</span>
+                <h3>Pointwise And Pairwise Auto-Rubric</h3>
                 <p>
-                  Candidate rubrics are not accepted on faith. They must explain
-                  the labeled preference pair and are revised when the judge fails
-                  to recover the expected ordering.
+                  The same rubric interface supports scalar-style pointwise
+                  grading and pairwise comparison, allowing one structured
+                  preference representation to unify evaluation, ranking, and
+                  reward construction.
                 </p>
               </article>
 
               <article class="feature-card card" data-reveal>
-                <h3>Reusable</h3>
+                <span class="feature-number">C</span>
+                <h3>Diagnosing the Interface Bottleneck</h3>
                 <p>
-                  Once verified, rubric sets can be reused across runs, benchmark
-                  settings, and judge backends for deterministic and auditable
-                  experiments.
+                  The paper argues that multimodal alignment is bottlenecked less
+                  by missing knowledge than by the absence of a stable,
+                  factorized interface for expressing and applying preference.
+                </p>
+              </article>
+
+              <article class="feature-card card" data-reveal>
+                <span class="feature-number">D</span>
+                <h3>A Concise Diffusion Online RL Algorithm</h3>
+                <p>
+                  We also introduce a concise pairwise diffusion online RL
+                  algorithm that emphasizes data efficiency, training stability,
+                  and scalability, validating Rubric as Reward in text-to-image
+                  and image editing rather than only multimodal reasoning.
                 </p>
               </article>
             </div>
@@ -204,11 +291,11 @@
           <div class="container">
             <div class="section-heading" data-reveal>
               <p class="section-kicker">Method</p>
-              <h2 class="section-title">From preference examples to ARR-RPO rewards</h2>
+              <h2 class="section-title">From preference examples to reusable ARR rewards</h2>
             </div>
 
-            <div class="method-layout">
-              <figure class="figure-card card wide" data-reveal>
+            <div class="method-grid">
+              <figure class="figure-card card figure-primary" data-reveal>
                 <a href="assets/image/methods.pdf">
                   <img
                     src="assets/site/figures/methods.png"
@@ -216,46 +303,48 @@
                   />
                 </a>
                 <figcaption>
-                  The pipeline generates query-specific rubrics, verifies them on
-                  labeled examples, structures the surviving criteria, and uses a
-                  frozen ARR judge to produce pairwise rewards for policy
-                  optimization.
+                  The pipeline generates task-specific rubrics, verifies them on
+                  supervision, organizes the surviving criteria into reusable
+                  structure, and connects a frozen ARR judge to pairwise reward
+                  construction for diffusion training.
                 </figcaption>
               </figure>
 
-              <div class="stacked-notes">
+              <div class="method-notes">
                 <article class="note-card card" data-reveal>
                   <span class="note-index">Step 1</span>
-                  <h3>Query-specific rubric generation</h3>
+                  <h3>Query-Specific Rubric Generation</h3>
                   <p>
-                    A labeled pair provides the preference signal; the VLM then
-                    proposes concrete dimensions such as prompt adherence,
-                    structural fidelity, edit accuracy, or artifact control.
+                    Each supervised example becomes a prompt for extracting the
+                    dimensions that should matter, whether the downstream task
+                    needs pointwise scoring or pairwise ranking.
                   </p>
                 </article>
 
                 <article class="note-card card" data-reveal>
                   <span class="note-index">Step 2</span>
-                  <h3>Verification and refinement</h3>
+                  <h3>Verification And Revision</h3>
                   <p>
-                    The same rubric must recover the ground-truth ranking. Failed
-                    criteria are revised rather than silently passed through.
+                    The same rubric must recover the desired supervision signal.
+                    If the generated criteria fail under grading, the system
+                    refines them instead of passing noisy reward logic
+                    downstream.
                   </p>
                 </article>
 
                 <article class="note-card card" data-reveal>
                   <span class="note-index">Step 3</span>
-                  <h3>Structured reward reuse</h3>
+                  <h3>Structured Reward Reuse</h3>
                   <p>
-                    Verified rubrics are grouped into reusable theme-tip
-                    structures, then consumed by a frozen VLM judge whose pairwise
-                    decisions are converted into ARR rewards.
+                    Verified rubrics are grouped into reusable themes and tips,
+                    then consumed by a frozen VLM judge whose outputs can power
+                    evaluation or pairwise online RL for generation models.
                   </p>
                 </article>
               </div>
             </div>
 
-            <div class="two-up two-up-tight">
+            <div class="two-up rubric-showcase">
               <figure class="figure-card card" data-reveal>
                 <a href="assets/image/arr_t2i.pdf">
                   <img
@@ -264,9 +353,9 @@
                   />
                 </a>
                 <figcaption>
-                  A generated text-to-image rubric can explicitly encode
-                  architecture, lighting realism, material fidelity, composition,
-                  and artifact control.
+                  Text-to-image rubrics make scene composition, object
+                  attributes, lighting realism, material quality, and artifact
+                  control explicit.
                 </figcaption>
               </figure>
 
@@ -278,25 +367,44 @@
                   />
                 </a>
                 <figcaption>
-                  For editing, the criteria shift toward instruction fulfillment,
-                  source preservation, local blending quality, and unintended
-                  modification control.
+                  Editing rubrics emphasize instruction fulfillment, local edit
+                  quality, preservation of source content, natural blending, and
+                  avoidance of unintended changes.
                 </figcaption>
               </figure>
             </div>
           </div>
         </section>
 
-        <section class="section section-alt" id="results">
+        <section class="section section-dark" id="benchmarks">
           <div class="container">
-            <div class="section-heading" data-reveal>
-              <p class="section-kicker">Results</p>
-              <h2 class="section-title">Consistent gains across evaluators, preference benchmarks, and generation benchmarks</h2>
+            <div class="section-heading section-heading-light" data-reveal>
+              <p class="section-kicker">Benchmarks</p>
+              <h2 class="section-title">Consistent gains across judges, preference benchmarks, and downstream generation quality</h2>
               <p class="section-lead">
-                We report two complementary views of performance: evaluator
-                accuracy on human-labeled preference benchmarks, and downstream
-                generative quality on text-to-image and image-editing benchmarks.
+                The paper shows two complementary effects: rubric-conditioning
+                makes VLM judging more reliable, and ARR-RPO translates that
+                better supervision into stronger text-to-image and image-editing
+                performance.
               </p>
+            </div>
+
+            <div class="result-highlights">
+              <article class="result-stat card" data-reveal>
+                <span class="result-label">Pointwise / Pairwise</span>
+                <strong>One rubric interface</strong>
+                <p>Auto-Rubric can serve scalar grading, comparison, and reward construction in one workflow.</p>
+              </article>
+              <article class="result-stat card" data-reveal>
+                <span class="result-label">Custom Dimensions</span>
+                <strong>Scale what matters</strong>
+                <p>Researchers can expand rubric dimensions toward fidelity, preservation, composition, artifacts, or domain-specific constraints.</p>
+              </article>
+              <article class="result-stat card" data-reveal>
+                <span class="result-label">Generation Scope</span>
+                <strong>Beyond reasoning</strong>
+                <p>The paper validates Rubric as Reward on multimodal generation with diffusion-based text-to-image and image-editing training.</p>
+              </article>
             </div>
 
             <div class="results-grid">
@@ -308,9 +416,8 @@
                   />
                 </a>
                 <figcaption>
-                  ARR-RPO improves both FLUX.1-Dev and Qwen-Image-Edit-2509
-                  across GenEval, DPG-Bench, TIIF, UniGenBench++ (Short and
-                  Long), GEdit-Bench, and ImgEdit.
+                  ARR-RPO improves FLUX.1-Dev and Qwen-Image-Edit on GenEval,
+                  DPG-Bench, TIIF, UniGenBench++, GEdit-Bench, and ImgEdit.
                 </figcaption>
               </figure>
 
@@ -323,19 +430,19 @@
                     />
                   </a>
                   <figcaption>
-                    The structured rubric transfers cleanly across judge families,
-                    yielding up to <strong>+3.3</strong> points over direct,
-                    rubric-free evaluation.
+                    Structured rubrics transfer cleanly across judge families and
+                    consistently outperform direct judging without explicit
+                    criteria.
                   </figcaption>
                 </figure>
 
                 <article class="highlight-card card" data-reveal>
-                  <h3>What the results suggest</h3>
+                  <h3>Reading the results</h3>
                   <ul>
-                    <li>Explicit criteria improve alignment without sacrificing interpretability.</li>
-                    <li>Task-aware rubrics reduce the tendency to reward generic prettiness.</li>
-                    <li>Image editing especially benefits from preservation-aware judging.</li>
-                    <li>Reusable rubric files make long ARR-RPO runs easier to audit and reproduce.</li>
+                    <li>Explicit criteria improve alignment while keeping the reward interpretable and editable.</li>
+                    <li>Pointwise and pairwise Auto-Rubric make the same rubric assets reusable across evaluation and training.</li>
+                    <li>Custom rubric dimensions reduce reward drift toward generic aesthetic preference.</li>
+                    <li>The diffusion RL recipe shows that rubric-conditioned rewards scale beyond multimodal reasoning tasks.</li>
                   </ul>
                 </article>
               </div>
@@ -345,11 +452,12 @@
               <article class="benchmark-card card" data-reveal>
                 <div class="benchmark-head">
                   <div>
-                    <p class="benchmark-kicker">Preference evaluation</p>
-                    <h3>Evaluator performance across four preference benchmarks</h3>
+                    <p class="benchmark-kicker">Preference Evaluation</p>
+                    <h3>Agreement with human labels across four preference benchmarks</h3>
                   </div>
                   <p class="benchmark-note">
-                    Accuracy denotes agreement with human preference labels.
+                    Accuracy denotes how often the judge matches the annotated
+                    preference.
                   </p>
                 </div>
                 <div class="table-wrap">
@@ -465,12 +573,12 @@
               <article class="benchmark-card card" data-reveal>
                 <div class="benchmark-head">
                   <div>
-                    <p class="benchmark-kicker">Generative quality</p>
-                    <h3>Text-to-image and image-editing performance under ARR-RPO</h3>
+                    <p class="benchmark-kicker">Generative Quality</p>
+                    <h3>Text-to-image and image-editing gains under ARR-RPO</h3>
                   </div>
                   <p class="benchmark-note">
-                    Best results are achieved by ARR-RPO with rubric-conditioned
-                    judges, especially under Gemini 3.1 Pro.
+                    The strongest results come from rubric-conditioned judges,
+                    especially with Gemini 3.1 Pro.
                   </p>
                 </div>
                 <div class="table-wrap">
@@ -688,14 +796,14 @@
           </div>
         </section>
 
-        <section class="section" id="examples">
+        <section class="section" id="qualitative">
           <div class="container">
             <div class="section-heading" data-reveal>
-              <p class="section-kicker">Qualitative examples</p>
-              <h2 class="section-title">Instruction fidelity, structural realism, and cleaner edits</h2>
+              <p class="section-kicker">Qualitative Results</p>
+              <h2 class="section-title">Stronger instruction fidelity, cleaner structures, and more faithful local edits</h2>
             </div>
 
-            <div class="example-pyramid">
+            <div class="qualitative-grid">
               <figure class="figure-card card example-top" data-reveal>
                 <a href="assets/image/results.pdf">
                   <img
@@ -705,8 +813,8 @@
                 </a>
                 <figcaption>
                   ARR-RPO improves prompt satisfaction, structural plausibility,
-                  and edit consistency while preserving source-image content when
-                  the task requires it.
+                  and edit consistency while retaining source-image content when
+                  preservation is part of the task.
                 </figcaption>
               </figure>
 
@@ -718,8 +826,9 @@
                   />
                 </a>
                 <figcaption>
-                  Text-to-image results show stronger content matching and
-                  compositional control under rubric-conditioned optimization.
+                  Text-to-image outputs show tighter content matching and more
+                  deliberate compositional control under rubric-conditioned
+                  optimization.
                 </figcaption>
               </figure>
 
@@ -731,45 +840,11 @@
                   />
                 </a>
                 <figcaption>
-                  Image-editing examples preserve identity and scene structure
-                  while carrying out localized edits more faithfully.
+                  Image-editing outputs preserve identity and global scene
+                  structure while executing localized instructions more
+                  faithfully.
                 </figcaption>
               </figure>
-            </div>
-          </div>
-        </section>
-
-        <section class="section section-alt" id="start">
-          <div class="container start-grid">
-            <div class="start-copy" data-reveal>
-              <p class="section-kicker">Get started</p>
-              <h2 class="section-title">Run the pipeline with your own judge</h2>
-              <p class="section-lead">
-                The repository includes the full Auto-Rubric pipeline, example
-                datasets, reusable rubric files, and RPO training launchers for
-                both FLUX text-to-image and Qwen-Image-Edit.
-              </p>
-
-              <div class="resource-list">
-                <a href="README.md">Repository README</a>
-                <a href="docs/auto_rubric/README.md">Auto-Rubric documentation</a>
-                <a href="docs/training.md">Training guide</a>
-              </div>
-            </div>
-
-            <div class="code-card card" data-reveal>
-              <pre><code>conda create -n vision-auto-rubric python=3.10 -y
-conda activate vision-auto-rubric
-bash env_setup.sh
-
-MODEL_PATH=Qwen/Qwen3-VL-8B-Instruct TP_SIZE=1 PORT=8000 \
-  bash rubric_pipeline/vllm_serve.sh
-
-python judger.py \
-  --config_path rubric_pipeline/config/qwen3vl_8B_instruct_t2i.yaml \
-  --seed_dataset examples/seed_t2i_pairwise.json \
-  --test_dataset examples/test_t2i_pairwise.json \
-  --base_url http://localhost:8000/v1</code></pre>
             </div>
           </div>
         </section>
@@ -780,12 +855,16 @@ python judger.py \
               <p class="section-kicker">Citation</p>
               <h2 class="section-title">BibTeX</h2>
               <p class="section-lead">
-                If Auto-Rubric as Reward is useful in your work, please cite the
-                project and link back to the repository.
+                If Auto-Rubric as Reward contributes to your work, please cite
+                the project and link back to the official repository.
               </p>
             </div>
 
             <div class="code-card card" data-reveal>
+              <div class="code-card-head">
+                <span>Citation</span>
+                <span>arXiv link coming soon</span>
+              </div>
               <pre><code>@misc{open2026auto,
   title        = {Auto-Rubric as Reward: From Implicit Preference to Explicit Generative Criteria},
   author       = {Anonymous},
@@ -799,7 +878,17 @@ python judger.py \
 
       <footer class="site-footer">
         <div class="container footer-row">
-          <p>OpenEnvision</p>
+          <div>
+            <p class="footer-title">OpenEnvision</p>
+            <p class="footer-copy">
+              Project homepage for Auto-Rubric as Reward.
+            </p>
+          </div>
+          <div class="footer-links">
+            <a href="#top">Back to top</a>
+            <a href="https://github.com/OpenEnvision/AutoRubric-as-Reward" target="_blank" rel="noreferrer">Code</a>
+            <a href="#" aria-disabled="true">Paper</a>
+          </div>
         </div>
       </footer>
     </div>
