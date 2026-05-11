@@ -261,6 +261,24 @@ h1 {
   line-height: 1.86;
 }
 
+.author-link {
+  display: inline-block;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.author-link:hover,
+.author-link:focus-visible {
+  color: var(--primary);
+  border-color: rgba(33, 79, 146, 0.28);
+}
+
+.author-link-static {
+  cursor: default;
+}
+
 .affiliation-line,
 .author-note {
   display: flex;
