@@ -211,10 +211,13 @@ This code builds on and is inspired by:
 ## Citation
 
 ```bibtex
-@misc{open2026auto,
-  title        = {Auto-Rubric as Reward: From Implicit Preference to Explicit Generative Criteria},
-  author       = {Anonymous},
-  year         = {2026},
-  note         = {arXiv coming soon}
+@misc{tian2026autorubricrewardimplicitpreferences,
+      title={Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria}, 
+      author={Juanxi Tian and Fengyuan Liu and Jiaming Han and Yilei Jiang and Yongliang Wu and Yesheng Liu and Haodong Li and Furong Xu and Wanhua Li},
+      year={2026},
+      eprint={2605.08354},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2605.08354}, 
 }
 ```
