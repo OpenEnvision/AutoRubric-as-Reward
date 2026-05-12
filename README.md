@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  The official implementation for <strong>Auto-Rubric as Reward: From Implicit Preference to Explicit Generative Criteria</strong>
+  The official implementation for <strong>Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria</strong>
 </p>
 
 <p align="center">
