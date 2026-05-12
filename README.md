@@ -1,7 +1,7 @@
 <h1 align="center">Auto-Rubric as Reward</h1>
 
 <p align="center">
-  <a href="https://arxiv.org/abs/2605.08354v1"><img src="https://img.shields.io/badge/arXiv-B31B1B?logo=arxiv&logoColor=white" alt="arXiv"></a>
+  <a href="https://arxiv.org/abs/2605.08354v1"><img src="https://img.shields.io/badge/arXiv-ARR-B31B1B?logo=arxiv&logoColor=white" alt="arXiv"></a>
   <a href="https://huggingface.co/OpenEnvisionLab/Auto-Rubric-as-Reward"><img src="https://img.shields.io/badge/HuggingFace-ARR-FFD21E?logo=huggingface&logoColor=white" alt="Hugging Face"></a>
   <a href="https://openenvision.github.io/AutoRubric-as-Reward/"><img src="https://img.shields.io/badge/Project-Website-2F6FED?logo=googlechrome&logoColor=white" alt="Project Website"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License"></a>
