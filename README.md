@@ -12,12 +12,20 @@
 </p>
 
 <p align="center">
+  <a href="#news">News</a> |
   <a href="#what-this-repo-does">Overview</a> |
   <a href="#quick-start">Quick Start</a> |
   <a href="#auto-rubric-documentation">Auto-Rubric Docs</a> |
   <a href="#training">Training</a> |
   <a href="#acknowledgements">Acknowledgements</a>
 </p>
+
+## News
+
+- **2026-07** Auto-Rubric as Reward has been included in several Rubric-as-Reward awesome lists and survey papers, and has received broad attention from the multimodal learning community. We sincerely appreciate the community's interest and recognition.
+
+- **2026-07** Notably, the scalability of ARR and its main empirical findings are consistent with recent related studies on rubric-based reward learning. ARR supports rubric generation for a wide range of multimodal understanding, generation, and editing tasks, and provides a lightweight online RL validation pipeline. Users can directly use ARR to generate task-specific rubrics or extend the framework to broader multimodal reward-learning scenarios.
+
 
 ## What This Repo Does
 
