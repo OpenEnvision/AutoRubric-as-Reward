@@ -1,4 +1,4 @@
-<h1 align="center">Auto-Rubric as Reward</h1>
+<h1 align="center">[NeurIPS2026]Auto-Rubric as Reward</h1>
 
 <img width="1774" height="887" alt="0075025f9688a6361c49382c3659e465" src="https://github.com/user-attachments/assets/5362caa7-2812-48b8-99ff-c2296085e919" />
 
